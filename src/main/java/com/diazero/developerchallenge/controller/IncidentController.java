@@ -6,11 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/incidents")
@@ -23,13 +20,13 @@ public class IncidentController {
 
     @PostMapping("")
     public ResponseEntity<Incident> createIncident(@RequestBody Incident incident) {
-        return new ResponseEntity<>(incidentService.create(incident), HttpStatus.CREATED);
+        return new ResponseEntity<>(incidentService.createIncident(incident), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Incident> getIncident(@PathVariable Long id) {
-        Optional<Incident> incident = incidentService.findById(id);
-        return incident.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/{idIncident}")
+    public ResponseEntity<Incident> getIncident(@PathVariable Long idIncident) {
+        Incident incident = incidentService.findById(idIncident);
+        return new ResponseEntity<>(incident, HttpStatus.OK);
     }
 
     @GetMapping("")
@@ -44,7 +41,7 @@ public class IncidentController {
 
     @GetMapping("/top20")
     public ResponseEntity<?> getLast20Incidents() {
-        List<Incident> incidents = incidentService.findLastTwenty();
+        List<Incident> incidents = incidentService.findLastTwentyIncidents();
         if(!incidents.isEmpty()){
             return new ResponseEntity<>(incidents,HttpStatus.OK);
         } else {
@@ -52,20 +49,30 @@ public class IncidentController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Incident> updateIncident(@PathVariable Long id, @RequestBody Incident incident) {
-        return new ResponseEntity<>(incidentService.update(id, incident), HttpStatus.OK);
+    @PutMapping("/{idIncident}")
+    public ResponseEntity<Incident> updateIncident(@PathVariable Long idIncident, @RequestBody Incident incident) {
+        return new ResponseEntity<>(incidentService.updateIncident(idIncident, incident), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Incident> patchManager(@PathVariable Long id, @RequestBody Map<String, String> incident) {
+    @PatchMapping("/{idIncident}")
+    public ResponseEntity<Incident> patchManager(@PathVariable Long idIncident, @RequestBody Map<String, String> incident) {
         Incident toBePatched = objectMapper.convertValue(incident, Incident.class);
-        return new ResponseEntity<>(incidentService.patch(id, toBePatched), HttpStatus.OK);
+        return new ResponseEntity<>(incidentService.patchIncident(idIncident, toBePatched), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteIncident(@PathVariable Long id) {
-        incidentService.delete(id);
-        return new ResponseEntity<>("INCIDENT "+id+" DELETADED.", HttpStatus.OK);
+    @PostMapping("/{idIncident}/close")
+    public ResponseEntity<Incident> closeIncident(@PathVariable Long idIncident) {
+        return new ResponseEntity<>(incidentService.closeIncident(idIncident), HttpStatus.OK);
+    }
+
+    @PostMapping("/{idIncident}/reopen")
+    public ResponseEntity<Incident> reopenIncident(@PathVariable Long idIncident) {
+        return new ResponseEntity<>(incidentService.reopenIncident(idIncident), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{idIncident}")
+    public ResponseEntity<String> deleteIncident(@PathVariable Long idIncident) {
+        incidentService.deleteIncident(idIncident);
+        return new ResponseEntity<>("INCIDENT "+idIncident+" DELETADED.", HttpStatus.OK);
     }
 }
