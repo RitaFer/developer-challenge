@@ -1,8 +1,8 @@
 package com.diazero.developerchallenge.handler;
 
 import com.diazero.developerchallenge.model.error.ErrorMessage;
-import com.diazero.developerchallenge.model.exception.GeneralException;
-import com.diazero.developerchallenge.model.exception.NotFoundException;
+import com.diazero.developerchallenge.exception.GeneralException;
+import com.diazero.developerchallenge.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

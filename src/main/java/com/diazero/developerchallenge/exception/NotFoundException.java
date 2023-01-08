@@ -1,4 +1,4 @@
-package com.diazero.developerchallenge.model.exception;
+package com.diazero.developerchallenge.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
