@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="TB_INCIDENTS")
 public class Incident implements Serializable {
     private static final long serialVersionUID = 1L;
