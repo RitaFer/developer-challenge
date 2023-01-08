@@ -1,4 +1,5 @@
 ## Diazero - Desenvolvedor Java Pleno
+###### A imagem do container deste projeto pode ser encontrada em **[Docker hub](https://hub.docker.com/layers/ritaferreira/developerchallenge/latest/images/sha256-fd6690c5ab790d44af43e249a209b91f0b8325b99b8fb075113dcc68f59fa890?context=repo)**
 
 ### Stack:
 - Java 8
