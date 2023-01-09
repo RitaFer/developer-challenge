@@ -1,5 +1,12 @@
-## Diazero - Desenvolvedor Java Pleno
-###### A imagem do container deste projeto pode ser encontrada em **[Docker hub](https://hub.docker.com/layers/ritaferreira/developerchallenge/latest/images/sha256-fd6690c5ab790d44af43e249a209b91f0b8325b99b8fb075113dcc68f59fa890?context=repo)**
+## Diazero - Java Developer
+
+### Execution:
+It is possible to run the application by downloading the zip from github, decompiling it, opening it with Intellij and running the project.<br><br>
+It is possible to run via docker:<br>
+The container image for this project can be found at **[Docker hub](https://hub.docker.com/layers/ritaferreira/developerchallenge/latest/images/sha256-fd6690c5ab790d44af43e249a209b91f0b8325b99b8fb075113dcc68f59fa890?context=repo)**
+<br>
+<code>docker pull ritaferreira/developerchallenge:latest</code><br>
+<code>docker run ritaferreira/developerchallenge:latest</code>
 
 ### Stack:
 - Java 8
@@ -7,79 +14,80 @@
 - Apache Maven 4.0.0
 - H2 runtime
 
-### Dependências
-- spring-boot-starter: utilizado para startar o projeto com o spring boot.
-- spring-boot-devtools: utilizado para evitar rebuilds durante o desenvolvimento.
-- spring-boot-starter-web: possibilita a criação e inserção de anotações para desenvolvimento de rest apis.
-- spring-boot-starter-validation: possibilita a inserção de validadores para variáveis via anotações.
-- spring-boot-starter-data-jpa: possibilita a comunicação com o banco de dados de forma simplificada, utilizando anotações.
-- h2: cria um banco de dados em memória.
-- lombok: possibilita a inserção de getters e setters e outros atalhos via anotações.
-- spring-boot-starter-security: possibilita a criação de camada de autenticação, tornando os dados mais seguros.
-- commons-beanutils: utlizado para a comunicação entre objetos evitando conflito entre espaços de memória.
-- springfox-swagger2 e springfox-swagger-ui: possibilita a criação de um swagger para a documentação da api.
+### Dependencies
+- spring-boot-starter: used to start the project with spring boot.
+- spring-boot-devtools: used to avoid rebuilds during development.
+- spring-boot-starter-web: allows the creation and insertion of annotations for the development of rest apis.
+- spring-boot-starter-validation: allows the insertion of validators for variables via annotations.
+- spring-boot-starter-data-jpa: enables communication with the database in a simplified way, using annotations.
+- h2: creates an in-memory database.
+- lombok: allows insertion of getters and setters and other shortcuts via annotations.
+- spring-boot-starter-security: enables the creation of an authentication layer, making data more secure.
+- commons-beanutils: used for communication between objects, avoiding conflicts between memory spaces.
+- springfox-swagger2 and springfox-swagger-ui: enables the creation of a swagger for the api documentation.
 
-### Considerações
-- 2 usuários em mémoria foram criados:
+### Considerations
+- 2 memory users were created:
 
-| username | password     | role  |
-|----------|--------------|---|
-| admin    | testediazero | admin  |
-| rita     | testediazero         | user  |
+| username | password | scroll |
+|---------|---------------|---|
+| admin | testediazero | admin |
+| rita | testediazero | user |
 
-- Os endpoints para as requições são diferentes dependendo do tipo de Role do usuário.
-- Endpoints de alteração como: create, update, patch e delete, estão disponíveis apenas ao admin;
-- É possível fechar e reabrir um incidente;
+- The endpoints for the requests are different depending on the user's role type.
+- Change endpoints such as: create, update, patch and delete, are only available to the admin;
+- It is possible to close and reopen an incident;
 
-### Utilização dos recursos
+### Resource utilization
 localhost:8080
 
-| Info                                            | Method | URI                    | Content-Type |
-|-------------------------------------------------|--------|------------------------|---|
-| Listando incidents                              | GET    | /incidents             |   |
-| Listando top 20 incidentes em ordem decrescente | GET    | /incidents/top20       |   |
-| Registrando incident                            | POST   | /incidents             | application/json |
-| Buscando incident por ID                        | GET    | /incidents/{Id}        |   |
-| Atualizando incident                            | PUT    | /incidents/{Id}        | application/json |
-| Atualizando informação do incidente             | PATCH  | /incidents/{Id}        | application/json |
-| Fechando incident                               | POST   | /incidents/{Id}/close  |   |
-| Reabrindo incident                              | POST    | /incidents/{Id}/reopen |   |
-| Deletando incident                              | DELETE | /incident/{Id}         |   |
+| Info | Method | URI | Content-Type |
+|---------------------------------------------------------------- |--------|------------------------|---|
+| SWAGGER | - | /swagger-ui.html | |
+| Listing incidents | GET | /incidents | |
+| Listing top 20 incidents in descending order | GET | /incidents/top20 | |
+| Registering incident | POST | /incidents | app/json |
+| Searching incident by ID | GET | /incidents/{Id} | |
+| Updating incident | PUT | /incidents/{Id} | app/json |
+| Updating Incident Information | PATCH | /incidents/{Id} | app/json |
+| Closing incident | POST | /incidents/{Id}/close | |
+| Reopening incident | POST | /incidents/{Id}/reopen | |
+| Deleting incident | DELETE | /incident/{Id} | |
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### Critérios para avaliação
-#### Será avaliado o conhecimento do framework spring, como você estrutrou o projeto e a clareza da solução. Lembre-se de usar inglês no processo de codificação.
-1) Stack
-   - JPA/Hibernate
-   - Spring Boot
-   - Maven
-2) Criar uma aplicação spring-boot para cadastro de incidentes. A aplicação deverá fornecer operações
-   REST que possibilitem o cadastro/manutenção/remoção de incidentes.
-   Um incidente é composto pelos campos (coloque mais campos se achar necessário).
-    - idIncident
-    - name
-    - description
-    - createdAt
-    - updatedAt
-    - closedAt
+-------------------------------------------------- -------------------------------------------------- -------------------------------------------------- ------------------------
+### Criteria for evaluation
+#### Knowledge of the spring framework will be assessed, how you have structured the project and the clarity of the solution. Remember to use English in the coding process.
+1) stack
+    - JPA/Hibernate
+    - Spring Boot
+    - maven
+2) Create a spring-boot application to register incidents. The application must provide operations
+    REST that allow the registration/maintenance/removal of incidents.
+    An incident is made up of fields (add more fields if necessary).
+     - idIncident
+     - name
+     - description
+     - createdAt
+     - updatedAt
+     - closedAt
    
-3) Sua aplicação deve ter as funcionalidades abaixo:
-   - Cadastrar Incidentes
-   - Atualizar Incidentes
-   - Deletar Incidentes
-   - Listar todos incidentes
-   - Listar incidente por ID
-   - Listar os últimos 20 incidentes ordenados por ordem decrescente
+3) Your application must have the features below:
+    - Register Incidents
+    - Update Incidents
+    - Delete Incidents
+    - List all incidents
+    - List incident by ID
+    - List the last 20 incidents sorted in descending order
 
-4) Utilize algum banco de dados 'embeded' (h2 por ex) para persistência dos dados. Pode usar qualquer outro banco desde que você consiga documentar os passos para inicialização da aplicação.
+4) Use some 'embeded' database (h2 for example) for data persistence. You can use any other database as long as you can document the steps to start the application.
 
-5) Adicione um README com:
-   - Instruções sobre como compilar e executar o projeto;
-   - Uma justificativa para o uso de frameworks ou bibliotecas (caso sejam usadas);
-   - Notas adicionais que você considere importantes para a avaliação.
+5) Add a README with:
+    - Instructions on how to compile and run the project;
+    - A justification for the use of frameworks or libraries (if used);
+    - Additional notes that you consider important for the evaluation.
 
-6) Opcional
-   - docker e docker-compose
-   - spring-security
-   - swagger
-   - testes unitários
+6) Optional
+    - docker and docker-compose
+    - spring-security
+    - swagger
+    - unitary tests
